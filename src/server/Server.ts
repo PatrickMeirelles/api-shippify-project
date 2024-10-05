@@ -1,9 +1,9 @@
 import express from "express";
 
+import { router } from './routes'
+
 const server = express();
 
-server.get('/', (_, res: any) => {
-    return res.send('first commit, all set')
-})
+server.use(router);
 
 export { server }
