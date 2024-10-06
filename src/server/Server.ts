@@ -1,13 +1,13 @@
 import express from "express";
-import 'dotenv/config'
+import "dotenv/config";
 
-import { router } from './routes'
+import "./shared/services/localeYup";
+import { router } from "./routes";
 
 const server = express();
 
 server.use(express.json());
 
-
 server.use(router);
 
-export { server }
+export { server };

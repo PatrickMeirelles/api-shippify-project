@@ -1,17 +1,34 @@
-import  { Router } from 'express';
-import { StatusCodes } from 'http-status-codes';
+import { Router } from "express";
+import { DriversControllers } from "./../controllers";
 
 const router = Router();
 
-router.get('/', (_, res: any) => {
-    return res.send('first commit, all set')
-})
+router.get("/", (_, res) => {
+  return res.status(200).send("Shippify API Project");
+});
 
-router.post('/drivers', (req, res: any) => {
-    console.log(req.body);
-    
-    return res.status(StatusCodes.ACCEPTED).send(req.body)
-})
+router.get(
+  "/drivers",
+  DriversControllers.getAllDriversValidation,
+  DriversControllers.getAllDrivers
+);
 
+router.post(
+  "/drivers",
+  DriversControllers.driverValidation,
+  DriversControllers.addDriver
+);
 
-export { router }
+router.post(
+  "/vehicles",
+  DriversControllers.vehiclesValidation,
+  DriversControllers.addVehicles
+);
+
+router.get(
+  "/drivers/:id/vehicles",
+  DriversControllers.getDriversVehiclesValidation,
+  DriversControllers.getDriversVehicles
+);
+
+export { router };
