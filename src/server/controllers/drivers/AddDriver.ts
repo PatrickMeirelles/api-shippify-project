@@ -22,5 +22,5 @@ export const addDriver = async (
   req: Request<{}, {}, IDriver>,
   res: Response
 ) => {
-  return res.status(StatusCodes.CREATED).send("Created driver");
+  return res.status(StatusCodes.CREATED).json(req.body);
 };
