@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { UsersProvider } from "../../database/providers/Users";
 import { validation } from "../../shared/middlewares";
 import { IUsers } from "../../database/models";
+import { Crypto } from "../../shared/services";
 
 interface IBodyProps extends Omit<IUsers, "id" | "nome"> {}
 
@@ -29,7 +30,8 @@ export const signIn = async (
     });
   }
 
-  if (password !== result.password) {
+  const matchPassword = await Crypto.verifyPassword(password, result.password);
+  if (!matchPassword) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       errors: {
         default: "Email or password are invalid",
