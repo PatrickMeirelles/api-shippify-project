@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { IVehicle } from "./Interfaces/IVehicles";
 import * as yup from "yup";
 import { validation } from "../../shared/middlewares";
+import { DriversProviders } from "../../database/providers/Drivers";
+import { IVehicle } from "../../database/models/Vehicles";
 
 export const vehiclesValidation = validation({
   body: yup.object().shape({
-    driverId: yup.number().required(),
+    driver_id: yup.number().required(),
     plate: yup.string().required().min(3).max(100),
     model: yup.string().required().min(3).max(100),
     type: yup.string().required().max(20),
@@ -16,8 +17,18 @@ export const vehiclesValidation = validation({
 });
 
 export const addVehicles = async (
-  req: Request<{}, {}, IVehicle>,
+  req: Request<{}, {}, Omit<IVehicle, "id">>,
   res: Response
 ) => {
-  return res.status(StatusCodes.CREATED).send("Added new vehicle");
+  const result = await DriversProviders.addVehicle(req.body);
+
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+
+  return res.status(StatusCodes.CREATED).json(result);
 };

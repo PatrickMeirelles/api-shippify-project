@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { IDriver } from "./Interfaces/IDriver";
+import { IDriver } from "../../database/models/Drivers";
 import * as yup from "yup";
 import { validation } from "../../shared/middlewares";
+import { DriversProviders } from "../../database/providers/Drivers";
+import { validate } from "../../shared/services/Drivers/validateEnums";
 
 export const driverValidation = validation({
   body: yup.object().shape({
@@ -19,8 +21,20 @@ export const driverValidation = validation({
 });
 
 export const addDriver = async (
-  req: Request<{}, {}, IDriver>,
+  req: Request<{}, {}, Omit<IDriver, "id">>,
   res: Response
 ) => {
-  return res.status(StatusCodes.CREATED).json(req.body);
+  const validateFields = validate(req.body);
+
+  const result = await DriversProviders.create(validateFields);
+
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+
+  return res.status(StatusCodes.CREATED).json(result);
 };

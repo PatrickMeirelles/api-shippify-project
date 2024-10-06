@@ -1,8 +1,9 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { IDriver, IFilter } from "./Interfaces/IDriver";
+import { IVehicle } from "../../database/models/Vehicles";
 import * as yup from "yup";
 import { validation } from "../../shared/middlewares";
+import { DriversProviders } from "../../database/providers/Drivers";
 
 export const getDriversVehiclesValidation = validation({
   query: yup.object().shape({
@@ -10,11 +11,24 @@ export const getDriversVehiclesValidation = validation({
   }),
 });
 
+interface Params {
+  id: string;
+}
+
 export const getDriversVehicles = async (
-  req: Request<{}, {}, IDriver>,
+  req: Request<Params, {}, Omit<IVehicle, "id">>,
   res: Response
 ) => {
-  console.log(req.params);
+  const id = req.params.id;
+  const result = await DriversProviders.getVehiclesByDriver(id);
 
-  return res.status(StatusCodes.ACCEPTED).send("Driver Vehicles:");
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+
+  return res.status(StatusCodes.ACCEPTED).json(result);
 };
