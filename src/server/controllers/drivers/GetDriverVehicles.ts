@@ -11,16 +11,13 @@ export const getDriversVehiclesValidation = validation({
   }),
 });
 
-interface Params {
-  id: string;
-}
-
 export const getDriversVehicles = async (
-  req: Request<Params, {}, Omit<IVehicle, "id">>,
+  req: Request<{ id: string }, {}, Omit<IVehicle, "id">>,
   res: Response
 ) => {
-  const id = req.params.id;
-  const result = await DriversProviders.getVehiclesByDriver(id);
+  const result = await DriversProviders.getVehiclesByDriver(
+    Number(req.params.id)
+  );
 
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

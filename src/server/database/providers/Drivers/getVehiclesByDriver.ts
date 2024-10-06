@@ -1,7 +1,9 @@
 import { Knex } from "../../knex";
 import { ETableNames } from "../../TableNames";
 
-export const getVehiclesByDriver = async (id: any): Promise<object | Error> => {
+export const getVehiclesByDriver = async (
+  id: number
+): Promise<object | Error> => {
   try {
     console.log(id);
 
