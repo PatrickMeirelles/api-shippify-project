@@ -36,18 +36,24 @@ export const test: Knex.Config = {
 
 export const production: Knex.Config = {
   client: "mysql2",
-  connection: {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: Number(process.env.DB_PORT) || 5432,
-  },
   migrations: {
     directory: path.resolve(__dirname, "..", "migrations"),
   },
   seeds: {
     directory: path.resolve(__dirname, "..", "seeds"),
+  },
+  connection: {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT) || 5432,
+    ssl: { rejectUnauthorized: false },
+  },
+  pool: {
+    afterCreate: (connection: any, done: Function) => {
+      done();
+    },
   },
 };
 

@@ -1,7 +1,7 @@
 export enum ETableNames {
-  companies = "companies",
-  cities = "cities",
-  drivers = "drivers",
-  vehicles = "vehicles",
+  companies = "company",
+  cities = "city",
+  drivers = "driver",
+  vehicles = "vehicle",
   users = "users",
 }
