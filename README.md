@@ -85,6 +85,10 @@ O projeto está organizado da seguinte forma:
   └── /tests             # Testes unitários e de integração
 ```
 
+## Documentação da API
+
+[text](https://documenter.getpostman.com/view/20609755/2sAXxMhDtN)
+
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou pull request.
