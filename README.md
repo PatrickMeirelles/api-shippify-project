@@ -87,7 +87,7 @@ O projeto está organizado da seguinte forma:
 
 ## Documentação da API
 
-[text](https://documenter.getpostman.com/view/20609755/2sAXxMhDtN)
+Documentação: https://documenter.getpostman.com/view/20609755/2sAXxMhDtN
 
 ## Contribuição
 
