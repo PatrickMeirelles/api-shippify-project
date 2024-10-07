@@ -8,29 +8,29 @@ export const getAllDrivers = async (
   try {
     let query = Knex(ETableNames.drivers)
       .select(
-        "drivers.id",
-        "drivers.city",
-        "drivers.first_name",
-        "drivers.last_name",
-        "drivers.email",
-        "drivers.phone",
-        "drivers.avatar_url",
-        "drivers.status",
-        "drivers.creation_date",
-        "companies.id as company_id",
-        "companies.name as company_name",
-        "companies.city as company_city",
-        "companies.status as company_status",
-        "companies.plan_type"
+        "driver.id",
+        "driver.city",
+        "driver.first_name",
+        "driver.last_name",
+        "driver.email",
+        "driver.phone",
+        "driver.avatar_url",
+        "driver.status",
+        "driver.creation_date",
+        "company.id as company_id",
+        "company.name as company_name",
+        "company.city as company_city",
+        "company.status as company_status",
+        "company.plan_type"
       )
-      .join("companies", "drivers.company_id", "companies.id");
+      .join("company", "driver.company_id", "company.id");
 
     if (city) {
-      query = query.where("drivers.city", city);
+      query = query.where("driver.city", city);
     }
 
     if (status) {
-      query = query.where("drivers.status", status);
+      query = query.where("driver.status", status);
     }
     const result = await query;
 
@@ -56,6 +56,6 @@ export const getAllDrivers = async (
     return structuredResult;
   } catch (error) {
     console.log(error);
-    return new Error("Error to catch the drivers");
+    return new Error("Error to catch the driver");
   }
 };

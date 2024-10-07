@@ -6,8 +6,6 @@ export const addVehicle = async (
   vehicle: Omit<IVehicle, "id">
 ): Promise<number | Error> => {
   try {
-    console.log(vehicle);
-
     const validateExistsDriver = await Knex(ETableNames.drivers)
       .select("id")
       .where("id", vehicle.driver_id);

@@ -5,39 +5,35 @@ export const getVehiclesByDriver = async (
   id: number
 ): Promise<object | Error> => {
   try {
-    console.log(id);
-
     let query = Knex(ETableNames.vehicles)
       .select(
-        "drivers.id",
-        "drivers.company_id",
-        "companies.name as company_name",
-        "companies.city as company_city",
-        "companies.status as company_status",
-        "companies.plan_type as company_plan_type",
-        "companies.creation_date as company_creation_date",
-        "drivers.city",
-        "drivers.first_name",
-        "drivers.last_name",
-        "drivers.email",
-        "drivers.avatar_url",
-        "drivers.status",
-        "drivers.creation_date",
-        "vehicles.id as vehicle_id",
-        "vehicles.driver_id as driver_id",
-        "vehicles.plate as plate",
-        "vehicles.model as model",
-        "vehicles.type as type",
-        "vehicles.capacity as capacity",
-        "vehicles.creation_date as vehicle_creation_date"
+        "driver.id",
+        "driver.company_id",
+        "company.name as company_name",
+        "company.city as company_city",
+        "company.status as company_status",
+        "company.plan_type as company_plan_type",
+        "company.creation_date as company_creation_date",
+        "driver.city",
+        "driver.first_name",
+        "driver.last_name",
+        "driver.email",
+        "driver.avatar_url",
+        "driver.status",
+        "driver.creation_date",
+        "vehicle.id as vehicle_id",
+        "vehicle.driver_id as driver_id",
+        "vehicle.plate as plate",
+        "vehicle.model as model",
+        "vehicle.type as type",
+        "vehicle.capacity as capacity",
+        "vehicle.creation_date as vehicle_creation_date"
       )
-      .leftJoin("drivers", "vehicles.driver_id", "drivers.id")
-      .leftJoin("companies", "drivers.company_id", "companies.id")
-      .where("drivers.id", id);
+      .leftJoin("driver", "vehicle.driver_id", "driver.id")
+      .leftJoin("company", "driver.company_id", "company.id")
+      .where("driver.id", id);
 
     const response = await query;
-    console.log(response);
-
     const driverData = {
       id: response[0]?.id,
       company: {

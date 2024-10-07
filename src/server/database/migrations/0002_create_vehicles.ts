@@ -10,7 +10,7 @@ export async function up(knex: Knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("drivers");
+        .inTable("driver");
       table.string("plate", 100).notNullable();
       table.string("model", 100).notNullable();
       table.string("type", 20).notNullable();

@@ -89,6 +89,11 @@ O projeto está organizado da seguinte forma:
 
 Documentação: https://documenter.getpostman.com/view/20609755/2sAXxMhDtN
 
+## Considerações
+
+- Utilizado Banco de dados sqlite3
+- Acesso ao banco no .env não realizado. (Conflitos com Autoincrement e Conexão para banco já existente)
+
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou pull request.

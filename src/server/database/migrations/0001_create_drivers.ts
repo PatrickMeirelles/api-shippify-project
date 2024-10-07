@@ -10,7 +10,7 @@ export async function up(knex: Knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("companies");
+        .inTable("company");
       table.integer("city").notNullable(); //After table 'cities' we can do: .unsigned().notNullable().references('id').inTable('cities'); for this field
       table.string("first_name", 100).notNullable();
       table.string("last_name", 100).notNullable();

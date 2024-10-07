@@ -1,14 +1,14 @@
 import { Knex } from "knex";
+import { ETableNames } from "../TableNames";
 
 export async function seed(knex: Knex): Promise<void> {
-  await knex("companies").insert([
+  await knex("company").insert([
     {
       id: 1,
       name: "FastTrack Logistics",
       city: 1001,
       status: "active",
       plan_type: "premium",
-      creation_date: "2024-01-15 09:00:00",
     },
     {
       id: 2,
@@ -16,7 +16,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1002,
       status: "active",
       plan_type: "standard",
-      creation_date: "2024-02-20 10:30:00",
     },
     {
       id: 3,
@@ -24,7 +23,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1003,
       status: "active",
       plan_type: "premium",
-      creation_date: "2023-03-10 11:45:00",
     },
     {
       id: 4,
@@ -32,7 +30,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1004,
       status: "active",
       plan_type: "standard",
-      creation_date: "2024-04-05 14:20:00",
     },
     {
       id: 5,
@@ -40,7 +37,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1005,
       status: "inactive",
       plan_type: "basic",
-      creation_date: "2023-05-12 16:00:00",
     },
     {
       id: 6,
@@ -48,7 +44,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1006,
       status: "active",
       plan_type: "premium",
-      creation_date: "2024-06-18 09:15:00",
     },
     {
       id: 7,
@@ -56,7 +51,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1007,
       status: "active",
       plan_type: "standard",
-      creation_date: "2023-07-22 13:40:00",
     },
     {
       id: 8,
@@ -64,7 +58,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1008,
       status: "active",
       plan_type: "premium",
-      creation_date: "2023-08-30 11:10:00",
     },
     {
       id: 9,
@@ -72,7 +65,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1009,
       status: "inactive",
       plan_type: "basic",
-      creation_date: "2024-09-14 15:30:00",
     },
     {
       id: 10,
@@ -80,7 +72,6 @@ export async function seed(knex: Knex): Promise<void> {
       city: 1010,
       status: "active",
       plan_type: "standard",
-      creation_date: "2023-10-25 10:00:00",
     },
   ]);
 }
