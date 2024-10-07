@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { DriversControllers, UsersController } from "./../controllers";
+import { ensureAuth } from "../shared/middlewares";
 
 const router = Router();
 
@@ -9,24 +10,28 @@ router.get("/", (_, res) => {
 
 router.get(
   "/drivers",
+  ensureAuth,
   DriversControllers.getAllDriversValidation,
   DriversControllers.getAllDrivers
 );
 
 router.post(
   "/drivers",
+  ensureAuth,
   DriversControllers.driverValidation,
   DriversControllers.addDriver
 );
 
 router.post(
   "/vehicles",
+  ensureAuth,
   DriversControllers.vehiclesValidation,
   DriversControllers.addVehicles
 );
 
 router.get(
   "/drivers/:id/vehicles",
+  ensureAuth,
   DriversControllers.getDriversVehiclesValidation,
   DriversControllers.getDriversVehicles
 );

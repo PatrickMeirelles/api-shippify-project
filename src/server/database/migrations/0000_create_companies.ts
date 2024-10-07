@@ -6,7 +6,7 @@ export async function up(knex: Knex) {
     .createTable(ETableNames.companies, (table) => {
       table.bigIncrements("id").primary().index();
       table.string("name", 100).notNullable();
-      table.string("city", 100).notNullable();
+      table.integer("city", 100).notNullable();
       table.string("status", 20).notNullable();
       table.string("plan_type", 20).notNullable();
       table.datetime("creation_date").notNullable().defaultTo(knex.fn.now());

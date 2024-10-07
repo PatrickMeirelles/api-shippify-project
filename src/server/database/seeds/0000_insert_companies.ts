@@ -1,0 +1,86 @@
+import { Knex } from "knex";
+
+export async function seed(knex: Knex): Promise<void> {
+  await knex("companies").insert([
+    {
+      id: 1,
+      name: "FastTrack Logistics",
+      city: 1001,
+      status: "active",
+      plan_type: "premium",
+      creation_date: "2024-01-15 09:00:00",
+    },
+    {
+      id: 2,
+      name: "Swift Delivery Co.",
+      city: 1002,
+      status: "active",
+      plan_type: "standard",
+      creation_date: "2024-02-20 10:30:00",
+    },
+    {
+      id: 3,
+      name: "Express Couriers",
+      city: 1003,
+      status: "active",
+      plan_type: "premium",
+      creation_date: "2023-03-10 11:45:00",
+    },
+    {
+      id: 4,
+      name: "City Rush Deliveries",
+      city: 1004,
+      status: "active",
+      plan_type: "standard",
+      creation_date: "2024-04-05 14:20:00",
+    },
+    {
+      id: 5,
+      name: "Speedy Shipments",
+      city: 1005,
+      status: "inactive",
+      plan_type: "basic",
+      creation_date: "2023-05-12 16:00:00",
+    },
+    {
+      id: 6,
+      name: "Metro Movers",
+      city: 1006,
+      status: "active",
+      plan_type: "premium",
+      creation_date: "2024-06-18 09:15:00",
+    },
+    {
+      id: 7,
+      name: "Rapid Transit LLC",
+      city: 1007,
+      status: "active",
+      plan_type: "standard",
+      creation_date: "2023-07-22 13:40:00",
+    },
+    {
+      id: 8,
+      name: "Urban Haulers",
+      city: 1008,
+      status: "active",
+      plan_type: "premium",
+      creation_date: "2023-08-30 11:10:00",
+    },
+    {
+      id: 9,
+      name: "Quick & Safe Delivery",
+      city: 1009,
+      status: "inactive",
+      plan_type: "basic",
+      creation_date: "2024-09-14 15:30:00",
+    },
+    {
+      id: 10,
+      name: "City Sprinters",
+      city: 1010,
+      status: "active",
+      plan_type: "standard",
+      creation_date: "2023-10-25 10:00:00",
+    },
+  ]);
+}
