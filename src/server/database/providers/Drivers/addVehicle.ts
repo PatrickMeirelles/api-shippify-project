@@ -13,10 +13,11 @@ export const addVehicle = async (
     if (validateExistsDriver.length == 0) {
       return new Error("Driver doesn't exists");
     }
-
+  
+    // Function applied: 2024-10-17 - Validate maximum of vehicles to a driver
     const verify = await Knex(ETableNames.vehicles).select("*").where("driver_id", vehicle.driver_id)
-    const date = new Date(); // Function applied: 2024-10-17
-    const formatDateNow = formatDate(date); // Function applied: 2024-10-17
+    const date = new Date();
+    const formatDateNow = formatDate(date); 
 
     if (verify.length >= 3) {
       const newVehicle = verify[verify.length - 1]
@@ -25,7 +26,7 @@ export const addVehicle = async (
         model: vehicle.model,
         type: vehicle.type,
         capacity: vehicle.capacity,
-        creation_date: formatDateNow // Function applied: 2024-10-17
+        creation_date: formatDateNow
       })
         .returning("id");
 

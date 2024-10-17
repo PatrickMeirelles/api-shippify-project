@@ -10,35 +10,41 @@ router.get("/", (_, res) => {
 
 router.get(
   "/drivers",
+  ensureAuth,
   DriversControllers.getAllDriversValidation,
   DriversControllers.getAllDrivers
 );
 
 router.post(
   "/drivers",
+  ensureAuth,
   DriversControllers.driverValidation,
   DriversControllers.addDriver
 );
 
 router.post(
   "/vehicles",
+  ensureAuth,
   DriversControllers.vehiclesValidation,
   DriversControllers.addVehicles
 );
 
 router.get(
   "/drivers/:id/vehicles",
+  ensureAuth,
   DriversControllers.getDriversVehiclesValidation,
   DriversControllers.getDriversVehicles
 );
 
 router.post(
   "/users/signin",
+  ensureAuth,
   UsersController.signInValidation,
   UsersController.signIn
 );
 router.post(
   "/users/signup",
+  ensureAuth,
   UsersController.signUpValidation,
   UsersController.signUp
 );
