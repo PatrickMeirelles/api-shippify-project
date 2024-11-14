@@ -1,4 +1,4 @@
-# Desafio Backend - API Shippify
+# API Shippify
 
 Este repositório contém a aplicação desenvolvida como parte do desafio para a vaga de backend na Shippify. A aplicação é construída com **Express**, **Node.js** e **TypeScript**.
 
